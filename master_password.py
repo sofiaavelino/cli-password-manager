@@ -6,11 +6,7 @@ from config import load_config
 from connect import connect
 from sql import *
 
-def master_password():
-    config = load_config()
-    conn = connect(config)
-    cursor = conn.cursor()
-
+def create_master_password(cursor):
     master_user = input('Define your vault username:')
     master_pw = getpass('Define your master password:')
     master_pw_dup = getpass('Confirm your password:')
@@ -25,7 +21,6 @@ def master_password():
     create_metadata_table(cursor)
     insert_metadata_table(cursor, kdf_salt)
 
-    conn.commit()
 
 def validate_master_password(pw, pw_dup, min_len=8, max_len=128):
     if pw != pw_dup:
@@ -37,10 +32,12 @@ def validate_master_password(pw, pw_dup, min_len=8, max_len=128):
             f"Password length must be between {min_len} and {max_len}"
         )
 
+def vault_initialized(cursor):
+    if not master_table_exists(cursor):
+        return False
+    return master_exists(cursor)
+
 def verify_master_password(cursor):
-    #config = load_config()
-    #conn = connect(config)
-    #cursor = conn.cursor()
 
     pw = lookup_master_password(cursor)[0]
     pw_bytes = pw.tobytes()
@@ -52,15 +49,3 @@ def verify_master_password(cursor):
         raise ValueError(
             f"Password Incorrect"
         )
-
-#master_password()
-#verify_master_password()
-
-'''def verify_master_password(cursor, candidate_password: str) -> bool:
-    stored_hash = lookup_master_password(cursor)[0]
-    stored_hash_bytes = stored_hash.tobytes()
-
-    return bcrypt.checkpw(
-        candidate_password.encode(),
-        stored_hash_bytes
-    )'''

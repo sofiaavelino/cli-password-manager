@@ -28,6 +28,20 @@ def create_master_table(cursor):
     cursor.execute(revoke_query)
     cursor.execute(grant_query)
 
+def master_table_exists(cursor):
+    cursor.execute("""
+        SELECT EXISTS (
+            SELECT 1
+            FROM information_schema.tables
+            WHERE table_name = 'master'
+        )
+    """)
+    return cursor.fetchone()[0]
+
+def master_exists(cursor):
+    cursor.execute("SELECT COUNT(*) FROM master")
+    return cursor.fetchone()[0] > 0
+
 def create_metadata_table(cursor):
     query = '''
     CREATE TABLE IF NOT EXISTS vault_metadata
