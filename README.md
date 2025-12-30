@@ -106,12 +106,19 @@ python main.py [command] [options]
 Enter one of the following parameters:
 
 `-a or --add [WEBSITE URL] [USERNAME] [PASSWORD_LENGTH (optional)]`: Generate a random password (default 20 characters) and save the entry.
+
 `-ap or --add_password [WEBSITE_URL] [USERNAME] [PASSWORD]`: Create a new entry with a custom password.
+
 `-uurl or --updateurl [NEW_URL] [OLD_URL]`: Update the URL of an existing entry.
+
 `-uuser or --updateuser [NEW_USERNAME] [URL]`: Update the username of a stored entry.
+
 `-upw or --updatepassword [NEW_PASSWORD (optional)] [URL]`: Update or generate a new password for a stored URL.
+
 `-d or --delete [WEBSITE URL]`: Delete an entry by URL.
+
 `-l or --lookup [WEBSITE URL]`: Look up an entry by URL.
+
 `-li or --list`: List all stored entries in vault.
 
 --- 
