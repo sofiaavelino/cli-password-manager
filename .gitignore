@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Configuration & secrets
+database.ini
+
+# OS files
+.DS_Store
