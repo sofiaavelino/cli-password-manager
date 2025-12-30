@@ -69,9 +69,9 @@ def argument_parser():
     )
 
     parser.add_argument(
-        "-p", "--print", 
+        "-li", "--list", 
         action="store_true",
-        help="Print all entries"
+        help="List all entries"
     )
 
     args = vars(parser.parse_args())
@@ -111,7 +111,7 @@ def arg_actions(cursor, args, master_key):
             print(f"password: {decrypt(password.tobytes(),master_key, salt)}")
             #if len(rows) > 1: print("-" * 65)  # separator line
 
-    if args['print']:
+    if args['list']:
         rows = print_table(cursor)
         for row in rows:
             url, username, password = row
