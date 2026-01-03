@@ -2,7 +2,4 @@ psycopg2==2.9.11
 config==0.5.1
 argparse==1.4.0
 bcrypt
-cryptography.fernet==0.1.0
-fastapi
-typing==3.7.4.3
-uvicorn==0.39.0
+cryptography
