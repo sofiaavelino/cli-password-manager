@@ -3,7 +3,6 @@ from config import load_config
 from sql import *
 from connect import connect
 from password_generator import generate_password
-from master_password import master_password
 from vault_encryptor import decrypt
 
 def argument_parser():
