@@ -14,7 +14,7 @@ def main():
     create_table(cursor) #Creates table if it doesnt exist
 
     if not vault_initialized(cursor):
-        create_master_password()
+        create_master_password(cursor)
 
     args = argument_parser()
     if any(args.values()):
